@@ -1,0 +1,1241 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Functions &#8212; Astro21</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture06_functions_s22';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Array Computing" href="lecture08_arrays1_s22.html" />
+    <link rel="prev" title="Nested loops" href="lecture05_sublists_and_tuples_s22.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Astro-21/97
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture02_basics_s22.html">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture03_while_loops_and_lists_s22.html">Forcing variable types</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture04_for_loops_s22.html">Q. What would this program print?</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture05_sublists_and_tuples_s22.html">Nested loops</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Functions</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture08_arrays1_s22.html">Array Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture10_arrays_plotting_s22.html">Plotting Arrays Using matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11_nDarrays_s22.html">Multi-Dimensional Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture17_random_numbers_s22.html">Q. When do we need to use random numbers in astronomy?</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/lecture06_functions_s22.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture06_functions_s22.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture06_functions_s22.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-global-variables">Local and Global variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-did-the-above-command-do">Q. What did the above command do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-multiple-arguments">Functions with multiple arguments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-happened">Q. What happened?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-do">Q. What will this do?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-multiple-return-values">Functions with multiple return values</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#doc-strings">Doc Strings:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-arguments">Keyword arguments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Q. What will this do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-yield">Q. What will this yield?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-functions-functions-as-arguments-to-other-functions">Nested functions: functions as arguments to other functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">Lambda functions</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add5</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">number</span> <span class="o">+</span> <span class="mi">5</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">add5</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Let&#39;s create a list of numbers that our function will evaluate</span>
+<span class="n">numbersList</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbersList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbersList</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">add5</span><span class="p">(</span><span class="n">numbersList</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></div>
+</div>
+</div>
+</div>
+<section id="local-and-global-variables">
+<h2>Local and Global variables<a class="headerlink" href="#local-and-global-variables" title="Permalink to this heading">#</a></h2>
+<p>Variables inside the function are called local variables – they only exists in the function add5.<br />
+Any variables existing outside of the function that can be accessed anywhere in the program are called global variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">def</span> <span class="nf">add5</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">number</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">mass</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">add5</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>53
+</pre></div>
+</div>
+</div>
+</div>
+<p>What will this print?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">g</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">g</span>       <span class="c1"># Now &quot;g&quot; inside the function references the global variable</span>
+    <span class="c1">#g = 11         # Give that variable a new value</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">g</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15 10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s go back to the Planck function,</p>
+<p><span class="math notranslate nohighlight">\(B_{\lambda}(T) = \frac{2 h c^2}{\lambda^5 \left[\exp\left(\frac{h c}{\lambda k T}\right) - 1 \right]}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(h\)</span> is Planck’s constant, <span class="math notranslate nohighlight">\(c\)</span> is the speed of light,
+<span class="math notranslate nohighlight">\(k\)</span> is Boltzmann’s constant, <span class="math notranslate nohighlight">\(T\)</span> is the blackbody temperature, and
+<span class="math notranslate nohighlight">\(\lambda\)</span> is the wavelength.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, define the physical constants:</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.626e-34</span>  <span class="c1"># J s, Planck&#39;s constant</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">1.38e-23</span>   <span class="c1"># J K^-1, Boltzmann constant</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">3.00e8</span>     <span class="c1"># m s^-1, speed of light</span>
+ 
+<span class="c1"># Conversion between nm and meters</span>
+<span class="n">nm2m</span> <span class="o">=</span> <span class="mf">1e9</span>
+    
+<span class="c1"># The Planck function is a function of two variables;</span>
+<span class="c1"># for now, we&#39;ll set T = 5,800 K, the photospheric temperature of the Sun</span>
+<span class="c1"># and allow the wavelength to vary.</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="mf">5800.0</span>  
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+
+<span class="c1"># Define the function using def:</span>
+ 
+<span class="k">def</span> <span class="nf">intensity1</span><span class="p">(</span><span class="n">wavelen_nm</span><span class="p">):</span>               <span class="c1"># Function header</span>
+    <span class="n">wavelengthM</span> <span class="o">=</span> <span class="n">wavelen_nm</span> <span class="o">/</span> <span class="n">nm2m</span>    <span class="c1"># Will convert nm to meters</span>
+    
+    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> \
+                        <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">temp</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">B</span>
+
+<span class="c1"># Units will be W / m^2 / m / ster</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity1</span><span class="p">(</span><span class="mf">500.0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity1</span><span class="p">(</span><span class="mf">500.0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity1</span><span class="p">(</span><span class="mf">500.0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.67646e+13
+2.676462e+13
+26764616298487.527344
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wavelengthList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">41</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-did-the-above-command-do">
+<h3>Q. What did the above command do?<a class="headerlink" href="#q-what-did-the-above-command-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wavelengthList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intensityList</span> <span class="o">=</span> <span class="p">[</span><span class="n">intensity1</span><span class="p">(</span><span class="n">wavelength</span><span class="p">)</span> <span class="k">for</span> <span class="n">wavelength</span> <span class="ow">in</span> <span class="n">wavelengthList</span><span class="p">]</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">intensityList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12467562222465.664, 13822570363885.275, 15150103234939.592, 16435485924635.223, 17666286862798.945, 18832325062754.484, 19925592398349.105, 20940115580525.785, 21871778764398.547, 22718123815804.715, 23478141556576.08, 24152063991194.957, 24741164684060.684, 25247572123612.84, 25674099050299.133, 26024089289297.02, 26301282555334.36, 26509696923790.062, 26653528131078.855, 26737064526083.25, 26764616298487.527, 26740457522211.934, 26668779542671.52, 26553654281462.41, 26399006112811.066, 26208591068650.652, 25985982243070.82, 25734560384567.684, 25457508780698.863, 25157811650863.527, 24838255366738.516, 24501431915135.992, 24149744104143.562, 23785412090302.13, 23410480872544.707, 23026828458155.78, 22636174457744.527, 22240088910847.316, 21840001181999.707, 21437208799649.094, 21032886137786.3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wavelengthList</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;wavelength (nm) = </span><span class="si">{:}</span><span class="s1">   Intensity (W m^-3 ster^-1) = </span><span class="si">{:.2e}</span><span class="s1">&#39;</span>\
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelengthList</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">intensityList</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wavelength (nm) = 300   Intensity (W m^-3 ster^-1) = 1.25e+13
+wavelength (nm) = 310   Intensity (W m^-3 ster^-1) = 1.38e+13
+wavelength (nm) = 320   Intensity (W m^-3 ster^-1) = 1.52e+13
+wavelength (nm) = 330   Intensity (W m^-3 ster^-1) = 1.64e+13
+wavelength (nm) = 340   Intensity (W m^-3 ster^-1) = 1.77e+13
+wavelength (nm) = 350   Intensity (W m^-3 ster^-1) = 1.88e+13
+wavelength (nm) = 360   Intensity (W m^-3 ster^-1) = 1.99e+13
+wavelength (nm) = 370   Intensity (W m^-3 ster^-1) = 2.09e+13
+wavelength (nm) = 380   Intensity (W m^-3 ster^-1) = 2.19e+13
+wavelength (nm) = 390   Intensity (W m^-3 ster^-1) = 2.27e+13
+wavelength (nm) = 400   Intensity (W m^-3 ster^-1) = 2.35e+13
+wavelength (nm) = 410   Intensity (W m^-3 ster^-1) = 2.42e+13
+wavelength (nm) = 420   Intensity (W m^-3 ster^-1) = 2.47e+13
+wavelength (nm) = 430   Intensity (W m^-3 ster^-1) = 2.52e+13
+wavelength (nm) = 440   Intensity (W m^-3 ster^-1) = 2.57e+13
+wavelength (nm) = 450   Intensity (W m^-3 ster^-1) = 2.60e+13
+wavelength (nm) = 460   Intensity (W m^-3 ster^-1) = 2.63e+13
+wavelength (nm) = 470   Intensity (W m^-3 ster^-1) = 2.65e+13
+wavelength (nm) = 480   Intensity (W m^-3 ster^-1) = 2.67e+13
+wavelength (nm) = 490   Intensity (W m^-3 ster^-1) = 2.67e+13
+wavelength (nm) = 500   Intensity (W m^-3 ster^-1) = 2.68e+13
+wavelength (nm) = 510   Intensity (W m^-3 ster^-1) = 2.67e+13
+wavelength (nm) = 520   Intensity (W m^-3 ster^-1) = 2.67e+13
+wavelength (nm) = 530   Intensity (W m^-3 ster^-1) = 2.66e+13
+wavelength (nm) = 540   Intensity (W m^-3 ster^-1) = 2.64e+13
+wavelength (nm) = 550   Intensity (W m^-3 ster^-1) = 2.62e+13
+wavelength (nm) = 560   Intensity (W m^-3 ster^-1) = 2.60e+13
+wavelength (nm) = 570   Intensity (W m^-3 ster^-1) = 2.57e+13
+wavelength (nm) = 580   Intensity (W m^-3 ster^-1) = 2.55e+13
+wavelength (nm) = 590   Intensity (W m^-3 ster^-1) = 2.52e+13
+wavelength (nm) = 600   Intensity (W m^-3 ster^-1) = 2.48e+13
+wavelength (nm) = 610   Intensity (W m^-3 ster^-1) = 2.45e+13
+wavelength (nm) = 620   Intensity (W m^-3 ster^-1) = 2.41e+13
+wavelength (nm) = 630   Intensity (W m^-3 ster^-1) = 2.38e+13
+wavelength (nm) = 640   Intensity (W m^-3 ster^-1) = 2.34e+13
+wavelength (nm) = 650   Intensity (W m^-3 ster^-1) = 2.30e+13
+wavelength (nm) = 660   Intensity (W m^-3 ster^-1) = 2.26e+13
+wavelength (nm) = 670   Intensity (W m^-3 ster^-1) = 2.22e+13
+wavelength (nm) = 680   Intensity (W m^-3 ster^-1) = 2.18e+13
+wavelength (nm) = 690   Intensity (W m^-3 ster^-1) = 2.14e+13
+wavelength (nm) = 700   Intensity (W m^-3 ster^-1) = 2.10e+13
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intensity1</span><span class="p">(</span><span class="n">wavelen_nm</span><span class="p">):</span>                <span class="c1"># Function header</span>
+    <span class="n">wavelengthM</span> <span class="o">=</span> <span class="n">wavelen_nm</span> <span class="o">/</span> <span class="n">nm2m</span>    <span class="c1"># Will convert nm to meters</span>
+    
+    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">temp</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">B</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="mi">915</span><span class="n">ca2a905f5</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;B&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wavelengthM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="functions-with-multiple-arguments">
+<h2>Functions with multiple arguments<a class="headerlink" href="#functions-with-multiple-arguments" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, define the physical constants:</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.626e-34</span>  <span class="c1"># J s, Planck&#39;s constant</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">1.38e-23</span>   <span class="c1"># J K^-1, Boltzmann constant</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">3.00e8</span>     <span class="c1"># m s^-1, speed of light</span>
+ 
+<span class="c1"># Conversion between nm and meters</span>
+<span class="n">nm2m</span> <span class="o">=</span> <span class="mf">1e9</span>
+    
+<span class="c1"># The Planck function is a function of two variables;</span>
+<span class="c1"># for now, we&#39;ll set T = 5,800 K, the photospheric temperature of the Sun</span>
+<span class="c1"># and allow the wavelength to vary.</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="mf">5800.0</span>  
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intensity2</span><span class="p">(</span><span class="n">wavelen_nm</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>   <span class="c1"># 2nd version of function Intensity</span>
+    <span class="n">wavelengthM</span> <span class="o">=</span> <span class="n">wavelen_nm</span> <span class="o">/</span> <span class="n">nm2m</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">temp</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">B</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">5800.0</span><span class="p">))</span>
+<span class="c1">#to format the output:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.2e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">5800.0</span><span class="p">)))</span>
+<span class="c1">#format with commas! reminder to look it up. :)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">5800.0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="n">temp</span><span class="o">=</span><span class="mf">5800.0</span><span class="p">,</span> <span class="n">wavelen_nm</span><span class="o">=</span><span class="mf">500.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="n">wavelen_nm</span><span class="o">=</span><span class="mf">500.0</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">5800.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Will the following produce the same result as the previous two ways of calling the “intensity2” function?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="mf">5800.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-happened">
+<h3>Q. What happened?<a class="headerlink" href="#q-what-happened" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+</section>
+<section id="exercise-1">
+<h1>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this heading">#</a></h1>
+<p>Write a function called “WaveListGen” that creates a list of wavelenghts that you can pass onto the Planck function program. Consider having a minimum and maximum wavelength and a step in wavelength that is changable (wavelength spacing).  Before you start, plan how many arguments your function should have and what the layout of the program should be.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#possible solution:</span>
+<span class="k">def</span> <span class="nf">waveListGen</span><span class="p">(</span><span class="n">minWavelength</span><span class="p">,</span> <span class="n">maxWavelength</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="n">waveList</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">wavelength</span> <span class="o">=</span> <span class="n">minWavelength</span>
+    
+    <span class="k">while</span> <span class="n">wavelength</span> <span class="o">&lt;=</span> <span class="n">maxWavelength</span><span class="p">:</span>
+        <span class="n">waveList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wavelength</span><span class="p">)</span>
+        <span class="n">wavelength</span> <span class="o">+=</span> <span class="n">delta</span>
+    
+    <span class="k">return</span> <span class="n">waveList</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">waveListGen</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-will-this-do">
+<h2>Q. What will this do?<a class="headerlink" href="#q-what-will-this-do" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waveList</span> <span class="o">=</span> <span class="n">waveListGen</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">waveList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now evaluate the wavelenght list we just defined through the intensity function</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waveList</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">intensity2</span><span class="p">(</span><span class="n">waveList</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">5800</span><span class="p">),</span><span class="n">waveList</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-with-multiple-return-values">
+<h2>Functions with multiple return values<a class="headerlink" href="#functions-with-multiple-return-values" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">6.626e-34</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">1.38e-23</span> 
+<span class="n">c</span> <span class="o">=</span> <span class="mf">3.00e8</span>   
+<span class="n">nm2m</span> <span class="o">=</span> <span class="mf">1e9</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+
+<span class="k">def</span> <span class="nf">intensity3</span><span class="p">(</span><span class="n">wavelen_nm</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>   
+    <span class="n">wavelengthM</span> <span class="o">=</span> <span class="n">wavelen_nm</span> <span class="o">/</span> <span class="n">nm2m</span>
+    
+    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelengthM</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">temp</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">wavelen_nm</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="c1">#notice that the function is returning 2 things: wavelenght and intensity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="mf">10000.0</span>  <span class="c1"># Hot A star or cool B star; brighter than a G star</span>
+
+<span class="c1"># There must be two variables on the left-hand side of the </span>
+<span class="c1"># assignment operator since the function will return two variables</span>
+<span class="n">wavelen_nm</span><span class="p">,</span> <span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity3</span><span class="p">(</span><span class="mf">600.0</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.1f}</span><span class="s2">   </span><span class="si">{:e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelen_nm</span><span class="p">,</span> <span class="n">intensity</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">intensity3</span><span class="p">(</span><span class="mf">600.0</span><span class="p">,</span> <span class="mf">10000.0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">wave</span> <span class="ow">in</span> <span class="p">(</span><span class="n">waveListGen</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">50</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wavelength and intensity: </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity3</span><span class="p">(</span><span class="n">wave</span><span class="p">,</span><span class="mf">1e4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="doc-strings">
+<h1>Doc Strings:<a class="headerlink" href="#doc-strings" title="Permalink to this heading">#</a></h1>
+<p>Doc strings are used to document functions.  They generally include:</p>
+<ul class="simple">
+<li><p>A description of the functionality of the function</p></li>
+<li><p>A list of arguments</p></li>
+<li><p>A description of outputs (returned values)</p></li>
+</ul>
+<p>And, they serve as the help documentation!</p>
+<p>They go right after the function header and are enclosed within triple quotes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">force</span><span class="p">(</span><span class="n">mass1</span><span class="p">,</span> <span class="n">mass2</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the gravitational force between two bodies.</span>
+<span class="sd">    </span>
+<span class="sd">    Input Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mass1 : int, float</span>
+<span class="sd">        Mass of the first body, in kilograms.</span>
+<span class="sd">    mass2 : int, float</span>
+<span class="sd">        Mass of the second body, in kilograms.</span>
+<span class="sd">    radius : int, float</span>
+<span class="sd">        Separation of the bodies, in meters.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    To compute force between Earth and the Sun:</span>
+<span class="sd">    &gt;&gt;&gt; F = force(5.97e24, 1.99e30, 1.5e11)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Force in Newtons : float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="mf">6.67e-11</span>
+    
+    <span class="k">return</span> <span class="n">G</span> <span class="o">*</span> <span class="n">mass1</span> <span class="o">*</span> <span class="n">mass2</span> <span class="o">/</span> <span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">force</span><span class="p">(</span><span class="mf">5.97e24</span><span class="p">,</span> <span class="mf">2.00e30</span><span class="p">,</span> <span class="mf">1.5e11</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To see the documentation for a function, use help:</span>
+
+<span class="n">help</span><span class="p">(</span><span class="n">force</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="keyword-arguments">
+<h2>Keyword arguments<a class="headerlink" href="#keyword-arguments" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">testFunc</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">kwarg1</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kwarg2</span><span class="o">=</span><span class="mf">4.</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">kwarg1</span><span class="p">,</span> <span class="n">kwarg2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Q. What will this do?<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testFunc</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s consider the equation for damped harmonic motion is:</p>
+<p><span class="math notranslate nohighlight">\(f(t)=A \cdot e^{-at} \cdot \sin({\omega \cdot t})\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sin</span>
+
+<span class="c1"># t is positional argument, others are keyword arguments</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">):</span>   
+    <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Only the time is specified</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-what-will-this-yield">
+<h3>Q. What will this yield?<a class="headerlink" href="#q-what-will-this-yield" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nested-functions-functions-as-arguments-to-other-functions">
+<h2>Nested functions: functions as arguments to other functions<a class="headerlink" href="#nested-functions-functions-as-arguments-to-other-functions" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\frac{df(x)}{dx} \approx \frac{f(x-h) + f(x+h) - 2f(x)}{h^2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">diff2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates a second derivative.</span>
+<span class="sd">    f:  the function (of one variable) to be differentiated</span>
+<span class="sd">    x:  value at which the function is evaluated</span>
+<span class="sd">    h:  small difference in x </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll work with the following function:</p>
+<p><span class="math notranslate nohighlight">\(g(t) = t^2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">gPrimePrime</span> <span class="o">=</span> <span class="n">diff2</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second derivative of g=t^2 evaluated at t=</span><span class="si">{:g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;g(</span><span class="si">{:f}</span><span class="s2">)=</span><span class="si">{:.8g}</span><span class="s2">&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gPrimePrime</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lambda-functions">
+<h2>Lambda functions<a class="headerlink" href="#lambda-functions" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This simply calculates the second derivative of t^2 evaluated at t=3.</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">diff2</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> 
+<span class="c1"># Recall the first argument to diff2 was the function, </span>
+<span class="c1"># which is &quot;lambda t: t**2&quot; here.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture05_sublists_and_tuples_s22.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Nested loops</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture08_arrays1_s22.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Array Computing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-global-variables">Local and Global variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-did-the-above-command-do">Q. What did the above command do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-multiple-arguments">Functions with multiple arguments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-happened">Q. What happened?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-do">Q. What will this do?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-multiple-return-values">Functions with multiple return values</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#doc-strings">Doc Strings:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-arguments">Keyword arguments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Q. What will this do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-yield">Q. What will this yield?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-functions-functions-as-arguments-to-other-functions">Nested functions: functions as arguments to other functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">Lambda functions</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ana Matovic and Stephanie Wissel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1475 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Nested loops &#8212; Astro21</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture05_sublists_and_tuples_s22';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functions" href="lecture06_functions_s22.html" />
+    <link rel="prev" title="Q. What would this program print?" href="lecture04_for_loops_s22.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Astro-21/97
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture02_basics_s22.html">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture03_while_loops_and_lists_s22.html">Forcing variable types</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture04_for_loops_s22.html">Q. What would this program print?</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nested loops</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture06_functions_s22.html">Functions</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture08_arrays1_s22.html">Array Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture10_arrays_plotting_s22.html">Plotting Arrays Using matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11_nDarrays_s22.html">Multi-Dimensional Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture17_random_numbers_s22.html">Q. When do we need to use random numbers in astronomy?</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/lecture05_sublists_and_tuples_s22.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture05_sublists_and_tuples_s22.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture05_sublists_and_tuples_s22.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Nested loops</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Nested loops</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-would-you-change-this-to-represent-a-circuit-meaning-for-every-set-you-alternate-doing-pushups-and-situps">Q. How would you change this to represent a circuit, meaning for every set you alternate doing pushups and situps?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#today-nested-lists-and-tuples">Today: Nested Lists and Tuples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-exactly-is-table">Q. What (exactly) is table?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupiter-orbits-at-5-au-and-has-a-period-of-12-years-does-this-check-out">Jupiter orbits at ~5 AU and has a period of ~12 years.  Does this check out?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-produce">Q. What will this produce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Q. What will this produce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-this">Q. This?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q. What will this produce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-tables">Formatting Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Q. What will this produce?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q. What will this produce?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Q. What will this produce?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#printing-objects">Printing Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-sublists">Extracting Sublists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-happen-when-i-run-this">Q. What will happen when I run this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-could-i-extract-all-elements-but-the-last-one-hint-there-is-more-than-one-way">Q. How could I extract all elements but the last one? (Hint:  There is more than one way.)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-and-what-might-this-do">Q. And what might this do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-slices-from-nested-lists">Extracting “slices” from nested lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-so-what-will-this-do">Q. So, what will this do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-did-that-line-just-do">Q. What did that line just do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-do">Q. What will this do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-review-what-will-this-do">Q. Review:  What will this do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-and-this">Q. And this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-and-what-will-be-returned-by-this">Q. And what will be returned by this?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-important-list-functionality-to-review">Summary of important list functionality to review</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="nested-loops">
+<h1>Nested loops<a class="headerlink" href="#nested-loops" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Create and assign variables</span>
+<span class="n">sets</span>         <span class="o">=</span> <span class="mi">3</span>
+<span class="n">repsPerSet</span>   <span class="o">=</span> <span class="mi">5</span>
+<span class="n">exerciseList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pushups&#39;</span><span class="p">,</span> <span class="s1">&#39;Situps&#39;</span><span class="p">]</span>
+
+<span class="c1">#  Print a nice header</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| </span><span class="si">%8s</span><span class="s2"> | </span><span class="si">%6s</span><span class="s2"> | </span><span class="si">%8s</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;Exercise&quot;</span><span class="p">,</span> <span class="s2">&quot;Set  &quot;</span><span class="p">,</span> <span class="s2">&quot;Rep   &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">32</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">exercise</span> <span class="ow">in</span> <span class="n">exerciseList</span><span class="p">:</span>                   <span class="c1"># The first loop  (exercises)</span>
+    <span class="k">for</span> <span class="n">mySet</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sets</span><span class="p">):</span>                   <span class="c1"># The second loop (sets)</span>
+        <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repsPerSet</span><span class="p">):</span>           <span class="c1"># The third loop  (reps)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| </span><span class="si">%8s</span><span class="s2"> | </span><span class="si">%i</span><span class="s2"> of </span><span class="si">%i</span><span class="s2"> | </span><span class="si">%i</span><span class="s2"> of </span><span class="si">%i</span><span class="s2"> |&quot;</span> <span class="o">%</span> \
+                  <span class="p">(</span><span class="n">exercise</span><span class="p">,</span> <span class="n">mySet</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sets</span><span class="p">,</span> <span class="n">rep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repsPerSet</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Exercise |  Set   |   Rep    |
+--------------------------------
+|  Pushups | 1 of 3 | 1 of 5 |
+|  Pushups | 1 of 3 | 2 of 5 |
+|  Pushups | 1 of 3 | 3 of 5 |
+|  Pushups | 1 of 3 | 4 of 5 |
+|  Pushups | 1 of 3 | 5 of 5 |
+|  Pushups | 2 of 3 | 1 of 5 |
+|  Pushups | 2 of 3 | 2 of 5 |
+|  Pushups | 2 of 3 | 3 of 5 |
+|  Pushups | 2 of 3 | 4 of 5 |
+|  Pushups | 2 of 3 | 5 of 5 |
+|  Pushups | 3 of 3 | 1 of 5 |
+|  Pushups | 3 of 3 | 2 of 5 |
+|  Pushups | 3 of 3 | 3 of 5 |
+|  Pushups | 3 of 3 | 4 of 5 |
+|  Pushups | 3 of 3 | 5 of 5 |
+|   Situps | 1 of 3 | 1 of 5 |
+|   Situps | 1 of 3 | 2 of 5 |
+|   Situps | 1 of 3 | 3 of 5 |
+|   Situps | 1 of 3 | 4 of 5 |
+|   Situps | 1 of 3 | 5 of 5 |
+|   Situps | 2 of 3 | 1 of 5 |
+|   Situps | 2 of 3 | 2 of 5 |
+|   Situps | 2 of 3 | 3 of 5 |
+|   Situps | 2 of 3 | 4 of 5 |
+|   Situps | 2 of 3 | 5 of 5 |
+|   Situps | 3 of 3 | 1 of 5 |
+|   Situps | 3 of 3 | 2 of 5 |
+|   Situps | 3 of 3 | 3 of 5 |
+|   Situps | 3 of 3 | 4 of 5 |
+|   Situps | 3 of 3 | 5 of 5 |
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-how-would-you-change-this-to-represent-a-circuit-meaning-for-every-set-you-alternate-doing-pushups-and-situps">
+<h2>Q. How would you change this to represent a circuit, meaning for every set you alternate doing pushups and situps?<a class="headerlink" href="#q-how-would-you-change-this-to-represent-a-circuit-meaning-for-every-set-you-alternate-doing-pushups-and-situps" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Create and assign variables</span>
+<span class="n">sets</span>         <span class="o">=</span> <span class="mi">3</span>
+<span class="n">repsPerSet</span>   <span class="o">=</span> <span class="mi">5</span>
+<span class="n">exerciseList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pushups&#39;</span><span class="p">,</span> <span class="s1">&#39;Situps&#39;</span><span class="p">]</span>
+
+<span class="c1">#  Print a nice header</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| </span><span class="si">%8s</span><span class="s2"> | </span><span class="si">%6s</span><span class="s2"> | </span><span class="si">%8s</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;Exercise&quot;</span><span class="p">,</span> <span class="s2">&quot;Set  &quot;</span><span class="p">,</span> <span class="s2">&quot;Rep   &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">32</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">mySet</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sets</span><span class="p">):</span>                       <span class="c1"># The first loop  (sets)</span>
+    <span class="k">for</span> <span class="n">exercise</span> <span class="ow">in</span> <span class="n">exerciseList</span><span class="p">:</span>               <span class="c1"># The second loop (exercises)</span>
+        <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repsPerSet</span><span class="p">):</span>           <span class="c1"># The third loop  (reps)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| </span><span class="si">%8s</span><span class="s2"> | </span><span class="si">%i</span><span class="s2"> of </span><span class="si">%i</span><span class="s2"> | </span><span class="si">%i</span><span class="s2"> of </span><span class="si">%i</span><span class="s2"> |&quot;</span> <span class="o">%</span> \
+                  <span class="p">(</span><span class="n">exercise</span><span class="p">,</span> <span class="n">mySet</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sets</span><span class="p">,</span> <span class="n">rep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repsPerSet</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Exercise |  Set   |   Rep    |
+--------------------------------
+|  Pushups | 1 of 3 | 1 of 5 |
+|  Pushups | 1 of 3 | 2 of 5 |
+|  Pushups | 1 of 3 | 3 of 5 |
+|  Pushups | 1 of 3 | 4 of 5 |
+|  Pushups | 1 of 3 | 5 of 5 |
+|   Situps | 1 of 3 | 1 of 5 |
+|   Situps | 1 of 3 | 2 of 5 |
+|   Situps | 1 of 3 | 3 of 5 |
+|   Situps | 1 of 3 | 4 of 5 |
+|   Situps | 1 of 3 | 5 of 5 |
+|  Pushups | 2 of 3 | 1 of 5 |
+|  Pushups | 2 of 3 | 2 of 5 |
+|  Pushups | 2 of 3 | 3 of 5 |
+|  Pushups | 2 of 3 | 4 of 5 |
+|  Pushups | 2 of 3 | 5 of 5 |
+|   Situps | 2 of 3 | 1 of 5 |
+|   Situps | 2 of 3 | 2 of 5 |
+|   Situps | 2 of 3 | 3 of 5 |
+|   Situps | 2 of 3 | 4 of 5 |
+|   Situps | 2 of 3 | 5 of 5 |
+|  Pushups | 3 of 3 | 1 of 5 |
+|  Pushups | 3 of 3 | 2 of 5 |
+|  Pushups | 3 of 3 | 3 of 5 |
+|  Pushups | 3 of 3 | 4 of 5 |
+|  Pushups | 3 of 3 | 5 of 5 |
+|   Situps | 3 of 3 | 1 of 5 |
+|   Situps | 3 of 3 | 2 of 5 |
+|   Situps | 3 of 3 | 3 of 5 |
+|   Situps | 3 of 3 | 4 of 5 |
+|   Situps | 3 of 3 | 5 of 5 |
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="today-nested-lists-and-tuples">
+<h1>Today: Nested Lists and Tuples<a class="headerlink" href="#today-nested-lists-and-tuples" title="Permalink to this heading">#</a></h1>
+<p>For this topic, we are now going to use Kepler’s Third Law which relates the orbital period of a planet to its semimajor axis (average distance to the center of the Sun in this case). We will assume the mass of the planet is much less than the mass of the Sun.</p>
+<p><span class="math notranslate nohighlight">\(P^2 = ka^3\)</span></p>
+<p><span class="math notranslate nohighlight">\(P\)</span> is the period, <span class="math notranslate nohighlight">\(k\)</span> is a constant, <span class="math notranslate nohighlight">\(a\)</span> is the
+semimajor axis</p>
+<p>So,</p>
+<p><span class="math notranslate nohighlight">\(P = \sqrt{k a^{3}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(a = 1.5\times 10^{11}\)</span> m for the Earth (one astronomical unit [AU])</p>
+<p><span class="math notranslate nohighlight">\(k = \frac{4\pi^2}{GM}\)</span> where <span class="math notranslate nohighlight">\(G\)</span> is the gravitational constant and <span class="math notranslate nohighlight">\(M\)</span> is the mass of the body being orbited in kilograms [kg] (the Sun in this case)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">G</span>    <span class="o">=</span> <span class="mf">6.67e-11</span>          <span class="c1"># Units:  kg^-1 m s^-2</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="mf">2.0e30</span>            <span class="c1"># Solar mass, kg</span>
+<span class="n">secPerYear</span> <span class="o">=</span> <span class="mf">3.15e7</span>      <span class="c1"># Seconds in 1 Earth year</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calculate the period for Earth&#39;</span><span class="p">)</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="n">mass</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k = </span><span class="si">%.5e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="n">aveDistEarth</span> <span class="o">=</span> <span class="mf">1.5e11</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">aveDistEarth</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;P in seconds = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;P in years = </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">P</span> <span class="o">/</span> <span class="n">secPerYear</span><span class="p">))</span>
+
+<span class="c1"># Q. What is the format of the &quot;P in years&quot; in the print statement?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculate the period for Earth
+k = 2.95940e-19
+P in seconds = 3.16038e+07
+P in years = 1.00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ratioList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="c1"># ratios of (Planet X / Earth) distance to the sun in AU</span>
+
+<span class="c1"># Q. What does the line below do?</span>
+
+<span class="n">periodList</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">*</span> <span class="n">aveDistEarth</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="n">secPerYear</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratioList</span><span class="p">]</span> 
+
+
+
+
+
+
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ratioList</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">periodList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1.0032941693800086, 2.837744442774115, 5.21326942891137, 8.026353355040069, 11.217169820814437, 14.745352661342999, 18.58126804814432, 22.70195554219292, 27.088942573260237, 31.726947384075913]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">[</span><span class="n">ratioList</span><span class="p">,</span> <span class="n">periodList</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-exactly-is-table">
+<h2>Q. What (exactly) is table?<a class="headerlink" href="#q-what-exactly-is-table" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+ [1.0032941693800086,
+  2.837744442774115,
+  5.21326942891137,
+  8.026353355040069,
+  11.217169820814437,
+  14.745352661342999,
+  18.58126804814432,
+  22.70195554219292,
+  27.088942573260237,
+  31.726947384075913]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupiter-orbits-at-5-au-and-has-a-period-of-12-years-does-this-check-out">
+<h2>Jupiter orbits at ~5 AU and has a period of ~12 years.  Does this check out?<a class="headerlink" href="#jupiter-orbits-at-5-au-and-has-a-period-of-12-years-does-this-check-out" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="q-what-will-this-produce">
+<h2>Q. What will this produce?<a class="headerlink" href="#q-what-will-this-produce" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Q. What will this produce?<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0032941693800086,
+ 2.837744442774115,
+ 5.21326942891137,
+ 8.026353355040069,
+ 11.217169820814437,
+ 14.745352661342999,
+ 18.58126804814432,
+ 22.70195554219292,
+ 27.088942573260237,
+ 31.726947384075913]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-this">
+<h2>Q. This?<a class="headerlink" href="#q-this" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="mi">711</span><span class="n">a38b14205</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">table</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="ne">IndexError</span>: list index out of range
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="c1"># for reference</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+ [1.0032941693800086,
+  2.837744442774115,
+  5.21326942891137,
+  8.026353355040069,
+  11.217169820814437,
+  14.745352661342999,
+  18.58126804814432,
+  22.70195554219292,
+  27.088942573260237,
+  31.726947384075913]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Q. What will this produce?<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31.726947384075913
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="formatting-tables">
+<h2>Formatting Tables<a class="headerlink" href="#formatting-tables" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="c1"># for reference (2 10-element sublists)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ratioList</span><span class="p">)):</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">ratioList</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">periodList</span><span class="p">[</span><span class="n">index</span><span class="p">]])</span>
+<span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 1.0032941693800086],
+ [2, 2.837744442774115],
+ [3, 5.21326942891137],
+ [4, 8.026353355040069],
+ [5, 11.217169820814437],
+ [6, 14.745352661342999],
+ [7, 18.58126804814432],
+ [8, 22.70195554219292],
+ [9, 27.088942573260237],
+ [10, 31.726947384075913]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>Q. What will this produce?<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 11.217169820814437]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>Q. What will this produce?<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.217169820814437
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>Q. What will this produce?<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 31.726947384075913]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="printing-objects">
+<h2>Printing Objects<a class="headerlink" href="#printing-objects" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ratioList</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2i</span><span class="s1"> </span><span class="si">%.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ratioList</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">periodList</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 1.0
+ 2 2.8
+ 3 5.2
+ 4 8.0
+ 5 11.2
+ 6 14.7
+ 7 18.6
+ 8 22.7
+ 9 27.1
+10 31.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">period</span> <span class="ow">in</span> <span class="n">table</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2d</span><span class="s1"> </span><span class="si">%.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 1.0
+ 2 2.8
+ 3 5.2
+ 4 8.0
+ 5 11.2
+ 6 14.7
+ 7 18.6
+ 8 22.7
+ 9 27.1
+10 31.7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extracting-sublists">
+<h2>Extracting Sublists<a class="headerlink" href="#extracting-sublists" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ratioList</span><span class="p">)</span>
+<span class="n">ratioList</span><span class="p">[</span><span class="mi">5</span><span class="p">:]</span>   <span class="c1"># will extract from index 5 to end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 7, 8, 9, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-will-happen-when-i-run-this">
+<h3>Q. What will happen when I run this?<a class="headerlink" href="#q-what-will-happen-when-i-run-this" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">ratioList</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7, 8, 9, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodList</span> <span class="c1"># for reference below</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0032941693800086,
+ 2.837744442774115,
+ 5.21326942891137,
+ 8.026353355040069,
+ 11.217169820814437,
+ 14.745352661342999,
+ 18.58126804814432,
+ 22.70195554219292,
+ 27.088942573260237,
+ 31.726947384075913]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodList</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[14.745352661342999, 18.58126804814432]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodList</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-how-could-i-extract-all-elements-but-the-last-one-hint-there-is-more-than-one-way">
+<h3>Q. How could I extract all elements but the last one? (Hint:  There is more than one way.)<a class="headerlink" href="#q-how-could-i-extract-all-elements-but-the-last-one-hint-there-is-more-than-one-way" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodList</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0032941693800086,
+ 2.837744442774115,
+ 5.21326942891137,
+ 8.026353355040069,
+ 11.217169820814437,
+ 14.745352661342999,
+ 18.58126804814432,
+ 22.70195554219292,
+ 27.088942573260237]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-and-what-might-this-do">
+<h3>Q. And what might this do?<a class="headerlink" href="#q-and-what-might-this-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periodList</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0032941693800086,
+ 2.837744442774115,
+ 5.21326942891137,
+ 8.026353355040069,
+ 11.217169820814437,
+ 14.745352661342999,
+ 18.58126804814432,
+ 22.70195554219292,
+ 27.088942573260237,
+ 31.726947384075913]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="extracting-slices-from-nested-lists">
+<h2>Extracting “slices” from nested lists<a class="headerlink" href="#extracting-slices-from-nested-lists" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 1.0032941693800086],
+ [2, 2.837744442774115],
+ [3, 5.21326942891137],
+ [4, 8.026353355040069],
+ [5, 11.217169820814437],
+ [6, 14.745352661342999],
+ [7, 18.58126804814432],
+ [8, 22.70195554219292],
+ [9, 27.088942573260237],
+ [10, 31.726947384075913]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[3, 5.21326942891137],
+ [4, 8.026353355040069],
+ [5, 11.217169820814437],
+ [6, 14.745352661342999],
+ [7, 18.58126804814432],
+ [8, 22.70195554219292],
+ [9, 27.088942573260237],
+ [10, 31.726947384075913]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-so-what-will-this-do">
+<h3>Q. So, what will this do?<a class="headerlink" href="#q-so-what-will-this-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 1.0032941693800086],
+ [2, 2.837744442774115],
+ [3, 5.21326942891137],
+ [4, 8.026353355040069],
+ [5, 11.217169820814437],
+ [6, 14.745352661342999],
+ [7, 18.58126804814432],
+ [8, 22.70195554219292]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 1.0032941693800086],
+ [2, 2.837744442774115],
+ [3, 5.21326942891137],
+ [4, 8.026353355040069],
+ [5, 11.217169820814437],
+ [6, 14.745352661342999],
+ [7, 18.58126804814432],
+ [8, 22.70195554219292],
+ [9, 27.088942573260237],
+ [10, 31.726947384075913]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5, 11.217169820814437], [6, 14.745352661342999]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-what-did-that-line-just-do">
+<h3>Q. What did that line just do?<a class="headerlink" href="#q-what-did-that-line-just-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-what-will-this-do">
+<h3>Q. What will this do?<a class="headerlink" href="#q-what-will-this-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># Notice result: not nested</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">][:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>   <span class="c1"># Notice result: nested -- it could have had </span>
+<span class="c1"># multiple sublists, it just happens there&#39;s only one.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s print just a range of the table to make sure we understand this.</span>
+<span class="c1"># We&#39;ll use the index method.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print from semimajor axis ratios of 1 to 5:</span>
+
+<span class="k">for</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">period</span> <span class="ow">in</span> <span class="n">table</span><span class="p">[</span><span class="n">ratioList</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">ratioList</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">6</span><span class="p">)]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2d</span><span class="s1"> </span><span class="si">%.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
+
+<span class="c1"># Recall that index(x) refers to the first index</span>
+<span class="c1"># in the list that has a value of x</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ratioList</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1st Index:&quot;</span><span class="p">,</span> <span class="n">ratioList</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2nd Index:&quot;</span><span class="p">,</span> <span class="n">ratioList</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Which is the same as:</span>
+
+<span class="k">for</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">period</span> <span class="ow">in</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2d</span><span class="s1"> </span><span class="si">%.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tuples">
+<h2>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s1">&#39;triangle&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+<span class="c1"># (This is fine, but of course we couldn&#39;t refer to the tuple.)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">test</span> <span class="o">+</span> <span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)</span>      <span class="c1"># I&#39;ve added elements to the tuple:  5.0 and 6.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-review-what-will-this-do">
+<h3>Q. Review:  What will this do?<a class="headerlink" href="#q-review-what-will-this-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-and-this">
+<h3>Q. And this?<a class="headerlink" href="#q-and-this" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-and-what-will-be-returned-by-this">
+<h3>Q. And what will be returned by this?<a class="headerlink" href="#q-and-what-will-be-returned-by-this" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;circle&#39;</span> <span class="ow">in</span> <span class="n">test</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="summary-of-important-list-functionality-to-review">
+<h2>Summary of important list functionality to review<a class="headerlink" href="#summary-of-important-list-functionality-to-review" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a = []          initialize an empty list</span>
+<span class="c1"># a = [1., 2]     initialize a list</span>
+<span class="c1"># a.append(elem)  add the elem object to the end of the list</span>
+<span class="c1"># a + [5, 4]      concatenate (join) two lists</span>
+<span class="c1"># a.insert(i, e)  insert element e at index i</span>
+<span class="c1"># a[5]            acess the value of the element at index 5</span>
+<span class="c1"># a[-1]           get the last list element value</span>
+<span class="c1"># a[4:7]          slice list a</span>
+<span class="c1"># del a[i]        delete list element with index i</span>
+<span class="c1"># a.remove(e)     remove list element with value e (not index e)</span>
+<span class="c1"># a.index(&#39;test&#39;) find the index where the element has the value &#39;test&#39;</span>
+<span class="c1"># 4 in a          find out whether 4 is in a</span>
+<span class="c1"># a.count(4)      count how many times 4 is in a</span>
+<span class="c1"># len(a)          return the number of elements in a</span>
+<span class="c1"># min(a)          return the smallest element in a</span>
+<span class="c1"># max(a)          return the largest element in a</span>
+<span class="c1"># sum(a)          add all the elements in a</span>
+<span class="c1"># sorted(a)       return a sorted version of list a</span>
+<span class="c1"># reversed(a)     return a reversed version of list a</span>
+<span class="c1"># a[1][0][4]      nested list indexing (3 dimensional list in this case)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture04_for_loops_s22.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Q. What would this program print?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture06_functions_s22.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Nested loops</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-would-you-change-this-to-represent-a-circuit-meaning-for-every-set-you-alternate-doing-pushups-and-situps">Q. How would you change this to represent a circuit, meaning for every set you alternate doing pushups and situps?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#today-nested-lists-and-tuples">Today: Nested Lists and Tuples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-exactly-is-table">Q. What (exactly) is table?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupiter-orbits-at-5-au-and-has-a-period-of-12-years-does-this-check-out">Jupiter orbits at ~5 AU and has a period of ~12 years.  Does this check out?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-produce">Q. What will this produce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Q. What will this produce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-this">Q. This?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q. What will this produce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-tables">Formatting Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Q. What will this produce?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q. What will this produce?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Q. What will this produce?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#printing-objects">Printing Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-sublists">Extracting Sublists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-happen-when-i-run-this">Q. What will happen when I run this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-could-i-extract-all-elements-but-the-last-one-hint-there-is-more-than-one-way">Q. How could I extract all elements but the last one? (Hint:  There is more than one way.)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-and-what-might-this-do">Q. And what might this do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-slices-from-nested-lists">Extracting “slices” from nested lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-so-what-will-this-do">Q. So, what will this do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-did-that-line-just-do">Q. What did that line just do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-do">Q. What will this do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-review-what-will-this-do">Q. Review:  What will this do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-and-this">Q. And this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-and-what-will-be-returned-by-this">Q. And what will be returned by this?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-important-list-functionality-to-review">Summary of important list functionality to review</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ana Matovic and Stephanie Wissel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

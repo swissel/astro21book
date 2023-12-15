@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: markdown
+- file: notebooks
+- file: markdown-notebooks
+- file: lecture02_basics_s22.ipynb
+- file: lecture03_while_loops_and_lists_s22.ipynb
+- file: lecture04_for_loops_s22.ipynb
+- file: lecture05_sublists_and_tuples_s22.ipynb
+- file: lecture06_functions_s22.ipynb
+- file: lecture08_arrays1_s22.ipynb
+- file: lecture10_arrays_plotting_s22.ipynb
+- file: lecture11_nDarrays_s22.ipynb
+- file: lecture17_random_numbers_s22.ipynb

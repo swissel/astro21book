@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Python Basics &#8212; Astro21</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture02_basics_s22';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Forcing variable types" href="lecture03_while_loops_and_lists_s22.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Astro-21/97
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture03_while_loops_and_lists_s22.html">Forcing variable types</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture04_for_loops_s22.html">Q. What would this program print?</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture05_sublists_and_tuples_s22.html">Nested loops</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture06_functions_s22.html">Functions</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture08_arrays1_s22.html">Array Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture10_arrays_plotting_s22.html">Plotting Arrays Using matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11_nDarrays_s22.html">Multi-Dimensional Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture17_random_numbers_s22.html">Q. When do we need to use random numbers in astronomy?</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/lecture02_basics_s22.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture02_basics_s22.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture02_basics_s22.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-about-names-and-values">A note about names and values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-gravitation-equation">Law of gravitation equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-find-the-force-of-a-person-standing-on-earth">Example 1 - Find the force of a person standing on earth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-find-the-acceleration-due-to-earth-s-gravity-the-g-in-f-mg">Example 2 - Find the acceleration due to Earth’s gravity (the g in F = mg)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-why-would-the-above-f-r-implementation-be-inconvenient-if-we-had-to-do-this-computation-many-times-say-for-different-masses">Q. Why would the above <span class="math notranslate nohighlight">\(F(r)\)</span> implementation be inconvenient if we had to do this computation many times, say for different masses?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-could-we-improve-this">How could we improve this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-do-the-x-y-statements-do">Q. What do the “x = y” statements do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-can-you-imagine-a-downside-to-descriptive-variable-names">Q. Can you imagine a downside to descriptive variable names?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-long-lines-of-code">Dealing with long lines of code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserved-words">Reserved Words</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-text-and-numbers">Formatting text and numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-situations-can-you-imagine-in-which-printing-information-like-this-i-e-full-sentences-carefully-formatted-numbers-would-be-useful">Q. What situations can you imagine in which printing information like this (i.e., full sentences, carefully formatted numbers) would be useful?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-science-glossary">Computer Science Glossary:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-basics">
+<h1>Python Basics<a class="headerlink" href="#python-basics" title="Permalink to this heading">#</a></h1>
+<section id="a-note-about-names-and-values">
+<h2>A note about names and values<a class="headerlink" href="#a-note-about-names-and-values" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#  What is the value of y?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="law-of-gravitation-equation">
+<h2>Law of gravitation equation<a class="headerlink" href="#law-of-gravitation-equation" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(F(r) = G \frac{m_1 m_2}{r^2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(G = 6.67 \times 10^{-11} \frac{\text{m}^3}{\text{kg} \cdot \text{s}^2}\)</span> (the gravitational constant)</p>
+<p><span class="math notranslate nohighlight">\(m_1\)</span> is the mass of the first body in kilograms (kg)</p>
+<p><span class="math notranslate nohighlight">\(m_2\)</span> is the mass of the second body in kilograms (kg)</p>
+<p><span class="math notranslate nohighlight">\(r\)</span> is the distance between the two bodies in meters (m)</p>
+</section>
+<section id="example-1-find-the-force-of-a-person-standing-on-earth">
+<h2>Example 1 - Find the force of a person standing on earth<a class="headerlink" href="#example-1-find-the-force-of-a-person-standing-on-earth" title="Permalink to this heading">#</a></h2>
+<p>For a person of mass 70 kg standing on the surface of the Earth (mass <span class="math notranslate nohighlight">\(5.97 \times 10^{24}\)</span> kg, radius 6370 km) the force will be (in units of Newtons, 1 N = 0.225 lbs):</p>
+<p><span class="math notranslate nohighlight">\(F(6.37 \times 10^{6}) = 6.67 \times 10^{-11} \cdot \frac{5.97 \times 10^{24} \cdot 70}{(6.37 \times 10^{6})^2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mf">6.67e-11</span> <span class="o">*</span> <span class="mf">5.97e24</span> <span class="o">*</span> <span class="mi">70</span> <span class="o">/</span> <span class="p">(</span><span class="mf">6.37e6</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686.9408456535615
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that I put spaces on either side of each mathematical operator. This isn’t required, but enhances clarity. Consider the alternative:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mf">6.67e-11</span><span class="o">*</span><span class="mf">5.97e24</span><span class="o">*</span><span class="mi">70</span><span class="o">/</span><span class="p">(</span><span class="mf">6.37e6</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686.9408456535615
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-find-the-acceleration-due-to-earth-s-gravity-the-g-in-f-mg">
+<h2>Example 2 - Find the acceleration due to Earth’s gravity (the g in F = mg)<a class="headerlink" href="#example-2-find-the-acceleration-due-to-earth-s-gravity-the-g-in-f-mg" title="Permalink to this heading">#</a></h2>
+<p>Using the gravitation equation above, set <span class="math notranslate nohighlight">\(m_2 = 1\)</span> kg</p>
+<p><span class="math notranslate nohighlight">\(F(6.37 \times 10^{6}) = 6.67 \times 10^{-11} \cdot \frac{5.97 \times 10^{24} \cdot 1}{(6.37 \times 10^{6})^2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="mf">6.67e-11</span> <span class="o">*</span> <span class="mf">5.97e24</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">6.37e6</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.813440652193735
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-why-would-the-above-f-r-implementation-be-inconvenient-if-we-had-to-do-this-computation-many-times-say-for-different-masses">
+<h3>Q. Why would the above <span class="math notranslate nohighlight">\(F(r)\)</span> implementation be inconvenient if we had to do this computation many times, say for different masses?<a class="headerlink" href="#q-why-would-the-above-f-r-implementation-be-inconvenient-if-we-had-to-do-this-computation-many-times-say-for-different-masses" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="how-could-we-improve-this">
+<h3>How could we improve this?<a class="headerlink" href="#how-could-we-improve-this" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span>  <span class="o">=</span> <span class="mf">6.67e-11</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="mf">5.97e24</span> 
+<span class="n">m2</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">r</span>  <span class="o">=</span> <span class="mf">6.37e6</span>
+
+<span class="n">F</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">m2</span> <span class="o">/</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>  <span class="c1">#  white-space for clarity!</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686.9408456535615
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-what-do-the-x-y-statements-do">
+<h3>Q. What do the “x = y” statements do?<a class="headerlink" href="#q-what-do-the-x-y-statements-do" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This calculates the force of gravity on Earth for a given object</span>
+<span class="n">G</span>          <span class="o">=</span> <span class="mf">6.67e-11</span>
+<span class="n">massEarth</span>  <span class="o">=</span> <span class="mf">5.97e24</span>
+<span class="n">massObject</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">radius</span>     <span class="o">=</span> <span class="mf">6.37e6</span>
+
+<span class="n">force</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">massEarth</span> <span class="o">*</span> <span class="n">massObject</span> <span class="o">/</span> <span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">force</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686.9408456535615
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-can-you-imagine-a-downside-to-descriptive-variable-names">
+<h3>Q. Can you imagine a downside to descriptive variable names?<a class="headerlink" href="#q-can-you-imagine-a-downside-to-descriptive-variable-names" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="dealing-with-long-lines-of-code">
+<h2>Dealing with long lines of code<a class="headerlink" href="#dealing-with-long-lines-of-code" title="Permalink to this heading">#</a></h2>
+<p>Split long lines with a backslash (with no space after it, just carraige return):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">force2</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">massEarth</span> <span class="o">*</span> \
+         <span class="n">massObject</span> <span class="o">/</span> <span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">force2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686.9408456535615
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reserved-words">
+<h2>Reserved Words<a class="headerlink" href="#reserved-words" title="Permalink to this heading">#</a></h2>
+<p>Using “reserved words” will lead to an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="o">=</span> <span class="mi">5000</span>     <span class="c1">#  Some wavelength in Angstroms</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-9-11d649356ea3&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="k">lambda</span> <span class="o">=</span> <span class="mi">5000</span>     <span class="c1">#  Some wavelength in Angstroms</span>
+           <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some really common ones are:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>and, break, class, continue, def,
+del, if, elif, else, except, False,
+for, from, import, in, is, lambda, None,
+not, or, pass, return, True, try, while
+</pre></div>
+</div>
+</section>
+<section id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Comments are specified with the pound symbol #</span>
+<span class="c1">#  Everything after a # in a line is ignored by Python</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s good practice to comment every line of your code.  If the code is
+extremely obvious, then a comment might not be necessary.</p>
+<p>There is another way to specify “block comments”: using two sets of 3 quotation marks ‘’’ ‘’’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comments without &#39;&#39;&#39; &#39;&#39;&#39; or # creates an error:</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">comment</span> <span class="c1"># Notice that the word &quot;is&quot; is highlighted in green, since it is a reserved word</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  However, in this form it does not, even for multiple lines:</span>
+<span class="c1">#</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">This is a really, super, super, super, super, super, super, super,</span>
+<span class="sd">super, super, super, super, super, super, super, super, super,</span>
+<span class="sd">long comment (not really).</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1">#</span>
+<span class="c1">#  We will use block comments to document modules later!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that iPython notebook still prints out the block comment text, but doesn’t actually run it as if it’s code.</p>
+</section>
+<section id="formatting-text-and-numbers">
+<h2>Formatting text and numbers<a class="headerlink" href="#formatting-text-and-numbers" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>              <span class="c1"># Importing the &quot;pi&quot; function from the math module. More in today&#39;s tutorial.</span>
+<span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  With some formatting where we only want 2 decimal places</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pi = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myPi</span> <span class="o">=</span> <span class="mf">3.2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MyPi formated to zero demical places </span><span class="si">{:.0f}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">myPi</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;myPi: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">myPi</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; as an integer&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="mf">6.67e-11</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="mf">5.97e24</span> <span class="c1"># mass of Earth</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="mi">70</span>      <span class="c1"># mass of person/object</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">6.37e6</span>   <span class="c1"># radius of Earth</span>
+
+<span class="n">F</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">m2</span> <span class="o">/</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hard to read!!  (And, note the junk at the end.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is the radius </span><span class="si">{:6.0f}</span><span class="s2"> and this is the force </span><span class="si">{:6.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">F</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  If we use triple quotes we don&#39;t have to </span>
+<span class="c1">#  use \n (or \ in some versions) for multiple lines</span>
+
+<span class="c1"># notice that the format for the radius is now in scientific notation</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;At the Earth&#39;s radius of </span><span class="si">{:.2e}</span><span class="s1"> meters,</span>
+<span class="s1">the force is </span><span class="si">{:6.0f}</span><span class="s1"> Newtons.&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Justification and commas to separate thousands</span>
+
+<span class="c1"># use {:&lt;} to left justify and {:&gt;} to right justify</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At the Earth&#39;s radius of </span><span class="si">{:.2e}</span><span class="s2"> meters, </span><span class="se">\</span>
+<span class="s2">the force is </span><span class="si">{:&gt;20f}</span><span class="s2"> Newtons.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span>
+
+<span class="c1"># use commas as thousands separator</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At the Earth&#39;s radius of </span><span class="si">{:,.2f}</span><span class="s2"> meters, </span><span class="se">\</span>
+<span class="s2">the force is </span><span class="si">{:&lt;20f}</span><span class="s2"> Newtons.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note when block comments are used, the text appears on 2 lines versus when using the \, the text appears all on 1 line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At the Earth&#39;s radius of </span><span class="si">{:.2e}</span><span class="s2"> meters,the force is </span><span class="si">{:.0f}</span><span class="s2"> Newtons.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the difference between .0f (float) and i (integer) (rounding vs. truncating)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Line breaks can also be implemented with \n</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At the Earth&#39;s radius of </span><span class="si">{:.2e}</span><span class="s2"> meters, </span><span class="se">\n</span><span class="s2">the force is </span><span class="si">{:.0f}</span><span class="s2"> Newtons.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-situations-can-you-imagine-in-which-printing-information-like-this-i-e-full-sentences-carefully-formatted-numbers-would-be-useful">
+<h3>Q. What situations can you imagine in which printing information like this (i.e., full sentences, carefully formatted numbers) would be useful?<a class="headerlink" href="#q-what-situations-can-you-imagine-in-which-printing-information-like-this-i-e-full-sentences-carefully-formatted-numbers-would-be-useful" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+</section>
+</section>
+<section id="computer-science-glossary">
+<h2>Computer Science Glossary:<a class="headerlink" href="#computer-science-glossary" title="Permalink to this heading">#</a></h2>
+<p>Some terms we need to learn:
+(a few you know already, a few will appear in today’s tutorial):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>OPERATING SYSTEM (OS): the collection of programs that manage the hardware
+                      and software resources of the computer (e.g. Windows, Mac OS X, Linux)
+
+PYTHON: a program which interprets the text in our program files
+
+SYNTAX: the language of the programming language
+        (e.g. words, spelling, spacing, punctuation, etc)
+
+MODULE: a self-contained program called or used by other programs
+
+PACKAGE: a collection of modules
+
+LIBRARIES: modules and packages (like numpy)
+
+ALGORITHM: the steps the program takes to run
+
+SOURCE CODE: the text that constitutes the program
+
+STATEMENTS: a short collection of source code
+
+INPUT: the information that goes into the program
+
+OUTPUT: the result of the program (what comes out)
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture03_while_loops_and_lists_s22.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Forcing variable types</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-about-names-and-values">A note about names and values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-gravitation-equation">Law of gravitation equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-find-the-force-of-a-person-standing-on-earth">Example 1 - Find the force of a person standing on earth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-find-the-acceleration-due-to-earth-s-gravity-the-g-in-f-mg">Example 2 - Find the acceleration due to Earth’s gravity (the g in F = mg)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-why-would-the-above-f-r-implementation-be-inconvenient-if-we-had-to-do-this-computation-many-times-say-for-different-masses">Q. Why would the above <span class="math notranslate nohighlight">\(F(r)\)</span> implementation be inconvenient if we had to do this computation many times, say for different masses?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-could-we-improve-this">How could we improve this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-do-the-x-y-statements-do">Q. What do the “x = y” statements do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-can-you-imagine-a-downside-to-descriptive-variable-names">Q. Can you imagine a downside to descriptive variable names?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-long-lines-of-code">Dealing with long lines of code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserved-words">Reserved Words</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-text-and-numbers">Formatting text and numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-situations-can-you-imagine-in-which-printing-information-like-this-i-e-full-sentences-carefully-formatted-numbers-would-be-useful">Q. What situations can you imagine in which printing information like this (i.e., full sentences, carefully formatted numbers) would be useful?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-science-glossary">Computer Science Glossary:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ana Matovic and Stephanie Wissel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1418 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Forcing variable types &#8212; Astro21</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture03_while_loops_and_lists_s22';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Q. What would this program print?" href="lecture04_for_loops_s22.html" />
+    <link rel="prev" title="Python Basics" href="lecture02_basics_s22.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Astro-21/97
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture02_basics_s22.html">Python Basics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Forcing variable types</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture04_for_loops_s22.html">Q. What would this program print?</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture05_sublists_and_tuples_s22.html">Nested loops</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture06_functions_s22.html">Functions</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="lecture08_arrays1_s22.html">Array Computing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lecture10_arrays_plotting_s22.html">Plotting Arrays Using matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11_nDarrays_s22.html">Multi-Dimensional Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture17_random_numbers_s22.html">Q. When do we need to use random numbers in astronomy?</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/lecture03_while_loops_and_lists_s22.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture03_while_loops_and_lists_s22.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture03_while_loops_and_lists_s22.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Forcing variable types</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Forcing variable types</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-produce">Q. What will this produce?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#review-continued-one-last-note-on-modules">Review continued:  One “last” note on modules</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#today-loops-lists">Today: Loops &amp; Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loops-section-2-1-2">While Loops (Section 2.1.2)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-the-following-loop-do-trace-it">Q. What will the following loop do? Trace it.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-about-this-one-can-you-predict-any-problems-it-may-cause">Q. What about this one? Can you predict any problems it may cause?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-loops">Infinite loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-does-this-work">Q. How does this work?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-logic-expressions">Boolean (logic) expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-is-the-value-of-this">Q. What is the value of this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Q. What is the value of this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q. What is the value of this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-about-these">Q. How about these?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-while-loops">Back to while loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-user-input">Example - User Input</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-happens-if-you-enter-a-letter-instead-of-a-number">Q. What happens if you enter a letter instead of a number?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-section-2-2">Lists (Section 2.2)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-print">Q. What will this print?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-lists">Modifying lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-the-next-line-produce">Q. What will the next line produce?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-operations">List operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Q. What will this produce?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-in-keyword">The “in” keyword</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-indices">Negative indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-give-us">Q. What will this give us?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-lists-with-while-loops">Creating lists with while loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-is-massratio">Q. What is massRatio?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="forcing-variable-types">
+<h1>Forcing variable types<a class="headerlink" href="#forcing-variable-types" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1">#  Gives (returns) the type of variable</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+45
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;float&#39;&gt;
+45.0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-will-this-produce">
+<h2>Q. What will this produce?<a class="headerlink" href="#q-what-will-this-produce" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">26.9</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="review-continued-one-last-note-on-modules">
+<h1>Review continued:  One “last” note on modules<a class="headerlink" href="#review-continued-one-last-note-on-modules" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span> <span class="c1"># import only the square root function from the math module</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>           <span class="c1"># import everything from the math module</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.38905609893065
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>    <span class="c1"># import everything from the math module</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.38905609893065
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another syntax is available to import modules:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Import math module and give it a new name</span>
+<span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span>               <span class="c1">#  Note the use of &quot;as&quot;, a reserved word</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<p>or specific functions within a module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Import sqrt from math and give it a new name</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span> <span class="k">as</span> <span class="n">sq</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span> <span class="k">as</span> <span class="n">PIE</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sq</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="today-loops-lists">
+<h1>Today: Loops &amp; Lists<a class="headerlink" href="#today-loops-lists" title="Permalink to this heading">#</a></h1>
+<p>The point of loops is to compactly code repetitive tasks.
+For example, computing the gravitational force for multiple planetary masses.</p>
+<p>Loops are an essential programming tool. (This is why we program!)</p>
+<p>Python supports two types of loops:</p>
+<ol class="arabic simple">
+<li><p>while loops</p></li>
+<li><p>for loops</p></li>
+</ol>
+<section id="while-loops-section-2-1-2">
+<h2>While Loops (Section 2.1.2)<a class="headerlink" href="#while-loops-section-2-1-2" title="Permalink to this heading">#</a></h2>
+<p>Recall the Gravitational Force Equation</p>
+<p><span class="math notranslate nohighlight">\(F(r) = G \frac{m_1 m_2}{r^2}\)</span></p>
+<section id="q-what-will-the-following-loop-do-trace-it">
+<h3>Q. What will the following loop do? Trace it.<a class="headerlink" href="#q-what-will-the-following-loop-do-trace-it" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# Table of Gravitational Forces for Multiple Planet Masses</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">#  Initialize variables - use meters and kilograms for units</span>
+<span class="n">G</span>           <span class="o">=</span> <span class="mf">6.67e-11</span>         <span class="c1"># Gravitational constant</span>
+<span class="n">massEarth</span>   <span class="o">=</span> <span class="mf">5.97e24</span>          <span class="c1"># Earth mass</span>
+<span class="n">massPerson</span>  <span class="o">=</span> <span class="mi">100</span>              <span class="c1"># Person mass </span>
+<span class="n">radiusEarth</span> <span class="o">=</span> <span class="mf">6.37e6</span>           <span class="c1"># Earth radius</span>
+
+<span class="c1">#  Begin calculation</span>
+<span class="n">mass1</span> <span class="o">=</span> <span class="n">massEarth</span>
+
+<span class="c1">#  Print a header</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# mass1/massEarth  Force&#39;</span><span class="p">)</span>
+
+<span class="c1">#  The loop ends when conditional mass1 &lt;= (10.0 * massEarth) is no longer true</span>
+<span class="k">while</span><span class="p">(</span><span class="n">mass1</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mf">10.0</span> <span class="o">*</span> <span class="n">massEarth</span><span class="p">)):</span>                   <span class="c1">#  Note the colon!</span>
+    <span class="n">force</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">mass1</span> <span class="o">*</span> <span class="n">massPerson</span> <span class="o">/</span> <span class="n">radiusEarth</span><span class="o">**</span><span class="mi">2</span>   <span class="c1">#  All lines in the loop must be indented by</span>
+                                                      <span class="c1">#  the same amount (iPython does it automatically)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mass1</span> <span class="o">/</span> <span class="n">massEarth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">force</span><span class="p">))</span>
+    <span class="n">mass1</span> <span class="o">=</span> <span class="n">mass1</span> <span class="o">+</span> <span class="n">massEarth</span>                         <span class="c1"># Increment by Earth&#39;s mass</span>
+
+<span class="c1"># No indent!  This line is executed after the loop is done</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# Done&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Table of Gravitational Forces for Multiple Planet Masses
+
+# mass1/massEarth  Force
+1.0 981.3440652193735
+2.0 1962.688130438747
+3.0 2944.0321956581206
+4.0 3925.376260877494
+5.0 4906.720326096869
+6.0 5888.064391316241
+7.0 6869.408456535615
+8.0 7850.752521754988
+9.0 8832.096586974363
+10.0 9813.440652193738
+# Done
+</pre></div>
+</div>
+</div>
+</div>
+<p>The increment could have been done in shorthand. Also, let’s space out those columns to make things more readable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that I have to reset mass1 here!!</span>
+<span class="n">mass1</span> <span class="o">=</span> <span class="n">massEarth</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# mass1/massEarth  Force&#39;</span><span class="p">)</span>
+
+<span class="k">while</span><span class="p">(</span><span class="n">mass1</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mf">10.0</span> <span class="o">*</span> <span class="n">massEarth</span><span class="p">)):</span>
+    <span class="n">force</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">mass1</span> <span class="o">*</span> <span class="n">massPerson</span> <span class="o">/</span> <span class="n">radiusEarth</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="c1">#print str(mass1 / massEarth) + &quot; &quot; + str(force)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%-18.1f</span><span class="s2"> </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mass1</span> <span class="o">/</span> <span class="n">massEarth</span><span class="p">,</span> <span class="n">force</span><span class="p">))</span> <span class="c1"># Column spacing is done here</span>
+    
+    <span class="c1">#  mass1 = mass1 + massEarth</span>
+    <span class="n">mass1</span> <span class="o">+=</span> <span class="n">massEarth</span>      <span class="c1">#  Shorthand version of the line above.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# Done&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># mass1/massEarth  Force
+1.0                981.34
+2.0                1962.69
+3.0                2944.03
+4.0                3925.38
+5.0                4906.72
+6.0                5888.06
+7.0                6869.41
+8.0                7850.75
+9.0                8832.10
+10.0               9813.44
+# Done
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-what-about-this-one-can-you-predict-any-problems-it-may-cause">
+<h3>Q. What about this one? Can you predict any problems it may cause?<a class="headerlink" href="#q-what-about-this-one-can-you-predict-any-problems-it-may-cause" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="infinite-loops">
+<h2>Infinite loops<a class="headerlink" href="#infinite-loops" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  How to prevent an infinite loop</span>
+
+<span class="n">maxCount</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1">#  A number that is more than your loop should ever do</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1">#  The current number your loop is on</span>
+
+<span class="c1">#  Adding &quot;and count &lt; maxCount&quot; to the end of your conditional prevents infinite loops</span>
+<span class="k">while</span><span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">maxCount</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loop count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>     <span class="c1">#  Increment your current loop count</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loop count: 0
+Loop count: 1
+Loop count: 2
+Loop count: 3
+Loop count: 4
+Loop count: 5
+Loop count: 6
+Loop count: 7
+Loop count: 8
+Loop count: 9
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-how-does-this-work">
+<h3>Q. How does this work?<a class="headerlink" href="#q-how-does-this-work" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="boolean-logic-expressions">
+<h2>Boolean (logic) expressions<a class="headerlink" href="#boolean-logic-expressions" title="Permalink to this heading">#</a></h2>
+<p>Boolean expressions are conditional statements.  There are only
+two possible values:  True or False</p>
+<p>(I’ve capitalized True and False because these are reserved words in Python.)</p>
+<section id="q-what-is-the-value-of-this">
+<h3>Q. What is the value of this?<a class="headerlink" href="#q-what-is-the-value-of-this" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Q. What is the value of this?<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Q. What is the value of this?<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>See how readable Python is?</p>
+<p>Boolean expressions can be combined with “and”, “or” and “not” to form compound conditional expressions.</p>
+</section>
+<section id="q-how-about-these">
+<h3>Q. How about these?<a class="headerlink" href="#q-how-about-these" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="mi">10</span> <span class="ow">and</span> <span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="mi">10</span> <span class="ow">or</span> <span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="back-to-while-loops">
+<h2>Back to while loops<a class="headerlink" href="#back-to-while-loops" title="Permalink to this heading">#</a></h2>
+<section id="example-user-input">
+<h3>Example - User Input<a class="headerlink" href="#example-user-input" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">minNumber</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">maxNumber</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1">#  Get a random number between 1 and 10</span>
+<span class="n">randomNumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minNumber</span><span class="p">,</span> <span class="n">maxNumber</span><span class="p">)</span>
+
+<span class="n">userGuess</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">while</span><span class="p">(</span><span class="n">userGuess</span> <span class="o">!=</span> <span class="n">randomNumber</span><span class="p">):</span>
+    <span class="n">userPrompt</span> <span class="o">=</span> <span class="s2">&quot;Guess a number between &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">minNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maxNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span>
+    
+    <span class="n">userGuess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">userPrompt</span><span class="p">)</span>      <span class="c1">#  Prompt the user</span>
+    
+    <span class="n">userGuess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">userGuess</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You have guessed the correct number! &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">userGuess</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">2231</span><span class="n">bbc0409e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">userPrompt</span> <span class="o">=</span> <span class="s2">&quot;Guess a number between &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">minNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maxNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> 
+<span class="ne">---&gt; </span><span class="mi">14</span>     <span class="n">userGuess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">userPrompt</span><span class="p">)</span>      <span class="c1">#  Prompt the user</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">userGuess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">userGuess</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/ipykernel/kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">845</span>             <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">846</span>                 <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">848</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="q-what-happens-if-you-enter-a-letter-instead-of-a-number">
+<h2>Q. What happens if you enter a letter instead of a number?<a class="headerlink" href="#q-what-happens-if-you-enter-a-letter-instead-of-a-number" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">minNumber</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">maxNumber</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1">#  Get a random number between 1 and 10</span>
+<span class="n">randomNumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minNumber</span><span class="p">,</span> <span class="n">maxNumber</span><span class="p">)</span>
+
+<span class="n">userGuess</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">while</span><span class="p">(</span><span class="n">userGuess</span> <span class="o">!=</span> <span class="n">randomNumber</span><span class="p">):</span>
+    <span class="n">userPrompt</span> <span class="o">=</span> <span class="s2">&quot;Guess a number between &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">minNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maxNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span>
+    
+    <span class="n">userGuess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">userPrompt</span><span class="p">)</span>      <span class="c1">#  Prompt the user</span>
+    
+    <span class="n">userGuess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">userGuess</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You have guessed the correct number! &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">userGuess</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-section-2-2">
+<h2>Lists (Section 2.2)<a class="headerlink" href="#lists-section-2-2" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">massRatio</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-will-this-print">
+<h3>Q. What will this print?<a class="headerlink" href="#q-what-will-this-print" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lesson learned: Python is zero-index-based</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">massRatio</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modifying-lists">
+<h2>Modifying lists<a class="headerlink" href="#modifying-lists" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">massRatio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">11.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This inserts 4.5 into index 4 of the list:</span>
+<span class="n">massRatio</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">massRatio</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-will-the-next-line-produce">
+<h3>Q. What will the next line produce?<a class="headerlink" href="#q-what-will-the-next-line-produce" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="list-operations">
+<h2>List operations<a class="headerlink" href="#list-operations" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can find out its length with len(object)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+
+<span class="c1"># Python uses [] to access elements and () to perform a function on an object.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">massRatio</span> <span class="o">=</span> <span class="n">massRatio</span> <span class="o">+</span> <span class="p">[</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">14.0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">massRatio</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>Q. What will this produce?<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">massRatio</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mf">12.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  And, this fails</span>
+<span class="n">massRatio</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mf">20.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">18</span><span class="o">-</span><span class="n">e8f3db0900fc</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#  And, this fails</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">massRatio</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mf">20.0</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: 20.0 is not in list
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-in-keyword">
+<h2>The “in” keyword<a class="headerlink" href="#the-in-keyword" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  We can check if there is an element in a list.  The result of the check</span>
+<span class="c1">#  is boolean:  True or False.</span>
+
+<span class="mf">14.0</span> <span class="ow">in</span> <span class="n">massRatio</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">99.0</span> <span class="ow">in</span> <span class="n">massRatio</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="negative-indices">
+<h2>Negative indices<a class="headerlink" href="#negative-indices" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Negative indices start counting from the right (the end) of a list:</span>
+<span class="n">massRatio</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-will-this-give-us">
+<h3>Q. What will this give us?<a class="headerlink" href="#q-what-will-this-give-us" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="creating-lists-with-while-loops">
+<h2>Creating lists with while loops<a class="headerlink" href="#creating-lists-with-while-loops" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initializations first</span>
+<span class="n">massRatio</span>      <span class="o">=</span> <span class="p">[]</span>       <span class="c1">#  Creates an empty list</span>
+<span class="n">massRatioValue</span> <span class="o">=</span> <span class="mf">1.0</span>      <span class="c1">#  For the conditional</span>
+<span class="n">massRatioMax</span>   <span class="o">=</span> <span class="mf">5.0</span>      <span class="c1">#  Also for the conditional</span>
+
+<span class="n">userInput</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>
+
+<span class="c1"># And the while loop</span>
+<span class="k">while</span><span class="p">(</span><span class="n">userInput</span> <span class="o">!=</span> <span class="s2">&quot;N&quot;</span> <span class="ow">and</span> <span class="n">massRatioValue</span> <span class="o">&lt;=</span> <span class="n">massRatioMax</span><span class="p">):</span>   <span class="c1">#  Remember the colon!</span>
+    <span class="c1">#  Remember to indent!</span>
+    <span class="n">massRatio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">massRatioValue</span><span class="p">)</span>
+    <span class="n">massRatioValue</span> <span class="o">+=</span> <span class="mf">1.0</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished creating the list massRatio!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished creating the list massRatio!
+</pre></div>
+</div>
+</div>
+</div>
+<section id="q-what-is-massratio">
+<h3>Q. What is massRatio?<a class="headerlink" href="#q-what-is-massratio" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 3.0, 4.0, 5.0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s say you wanted to determine how many mass ratios you put into the massRatio list. We could ask the user to say yes to adding the next value to the ratio list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initializations first</span>
+<span class="n">massRatio</span>      <span class="o">=</span> <span class="p">[]</span>       <span class="c1">#  Creates an empty list</span>
+<span class="n">massRatioValue</span> <span class="o">=</span> <span class="mf">1.0</span>      <span class="c1">#  For the conditional</span>
+<span class="n">massRatioMax</span>   <span class="o">=</span> <span class="mf">5.0</span>      <span class="c1">#  Also for the conditional</span>
+
+<span class="n">userInput</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>  <span class="c1">#notice the lower case</span>
+
+<span class="c1"># And the while loop</span>
+<span class="k">while</span><span class="p">(</span><span class="n">userInput</span> <span class="o">!=</span> <span class="s2">&quot;N&quot;</span> <span class="ow">and</span> <span class="n">massRatioValue</span> <span class="o">&lt;=</span> <span class="n">massRatioMax</span><span class="p">):</span>   <span class="c1">#  Remember the colon!</span>
+    <span class="c1">#  Remember to indent!</span>
+    <span class="n">massRatio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">massRatioValue</span><span class="p">)</span>
+    <span class="n">massRatioValue</span> <span class="o">+=</span> <span class="mf">1.0</span>
+    
+    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Add another mass ratio value? (Type &#39;Y&#39; for yes or &#39;N&#39; for no) &quot;</span><span class="p">)</span>
+    <span class="n">userInput</span> <span class="o">=</span> <span class="n">userInput</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># making the input upper case!</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished creating the list massRatio!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s assume that the user wants to input their own mass ratios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">massRatio</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">massRatioValue</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">massRatioMax</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+<span class="n">userInput</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>
+
+<span class="k">while</span><span class="p">(</span><span class="n">userInput</span> <span class="o">!=</span> <span class="s2">&quot;N&quot;</span> <span class="ow">and</span> <span class="n">massRatioValue</span> <span class="o">&lt;=</span> <span class="n">massRatioMax</span><span class="p">):</span>
+    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Add your own mass ratio: &quot;</span><span class="p">)</span>
+    
+    <span class="n">massRatio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span>
+    <span class="n">massRatioValue</span> <span class="o">+=</span> <span class="mf">1.0</span>
+      
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finihsed creating the list&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add your own mass ratio: 1
+Add your own mass ratio: 2
+Add your own mass ratio: 3
+Add your own mass ratio: 4
+Add your own mass ratio: 5
+Finihsed creating the list
+[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">massRatio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;10&#39;, &#39;20&#39;, &#39;30&#39;, &#39;40&#39;, &#39;50&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture02_basics_s22.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python Basics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture04_for_loops_s22.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Q. What would this program print?</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Forcing variable types</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-produce">Q. What will this produce?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#review-continued-one-last-note-on-modules">Review continued:  One “last” note on modules</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#today-loops-lists">Today: Loops &amp; Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loops-section-2-1-2">While Loops (Section 2.1.2)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-the-following-loop-do-trace-it">Q. What will the following loop do? Trace it.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-about-this-one-can-you-predict-any-problems-it-may-cause">Q. What about this one? Can you predict any problems it may cause?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-loops">Infinite loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-does-this-work">Q. How does this work?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-logic-expressions">Boolean (logic) expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-is-the-value-of-this">Q. What is the value of this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Q. What is the value of this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q. What is the value of this?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-how-about-these">Q. How about these?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-while-loops">Back to while loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-user-input">Example - User Input</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-happens-if-you-enter-a-letter-instead-of-a-number">Q. What happens if you enter a letter instead of a number?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-section-2-2">Lists (Section 2.2)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-print">Q. What will this print?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-lists">Modifying lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-the-next-line-produce">Q. What will the next line produce?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-operations">List operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Q. What will this produce?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-in-keyword">The “in” keyword</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-indices">Negative indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-will-this-give-us">Q. What will this give us?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-lists-with-while-loops">Creating lists with while loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-what-is-massratio">Q. What is massRatio?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ana Matovic and Stephanie Wissel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
